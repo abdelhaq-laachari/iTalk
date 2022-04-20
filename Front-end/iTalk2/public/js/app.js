@@ -22874,8 +22874,11 @@ __webpack_require__.r(__webpack_exports__);
   name: 'HomeHeader',
   components: {},
   methods: {
-    redirectLaravel: function redirectLaravel() {
+    login: function login() {
       this.$router.push('/login');
+    },
+    register: function register() {
+      this.$router.push('/register');
     }
   }
 });
@@ -22938,106 +22941,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _public_dist_img_iTalk_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../public/dist/img/iTalk.png */ "./public/dist/img/iTalk.png");
 
 
-var _hoisted_1 = {
-  "class": "home"
-};
-var _hoisted_2 = {
-  "class": "navbar navbar-expand-lg"
-};
-var _hoisted_3 = {
-  "class": "container"
-};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: _public_dist_img_iTalk_png__WEBPACK_IMPORTED_MODULE_1__["default"],
-  style: {
-    "width": "50px"
-  },
-  alt: ""
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "navbar-toggler btn-dark",
-  type: "button",
-  "data-bs-toggle": "collapse",
-  "data-bs-target": "#navbarNav",
-  "aria-controls": "navbarNav",
-  "aria-expanded": "false",
-  "aria-label": "Toggle navigation"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "navbar-toggler-icon"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_6 = {
-  "class": "collapse navbar-collapse",
-  id: "navbarNav"
-};
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mx-auto"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_8 = {
-  "class": "navbar-nav"
-};
-var _hoisted_9 = {
-  "class": "nav-item"
-};
-var _hoisted_10 = {
-  href: ""
-};
-var _hoisted_11 = {
-  "class": "nav-item"
-};
-var _hoisted_12 = {
-  href: ""
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-light"
-}, "Sign Up", -1
-/* HOISTED */
-);
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"home\"><nav class=\"navbar navbar-expand-lg\"><div class=\"container\"><!-- &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Web Zone&lt;/a&gt; --><img src=\"" + _public_dist_img_iTalk_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" style=\"width:50px;\" alt=\"\"><button class=\"navbar-toggler btn-dark\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"navbarNav\"><div class=\"mx-auto\"></div><ul class=\"navbar-nav\"><li class=\"nav-item nav-link\"><a href=\"/login\"><button class=\"btn btn-info\">Sign In</button></a></li><li class=\"nav-item nav-link\"><a href=\"/register\"><button class=\"btn btn-light\">Sign Up</button></a></li></ul></div></div></nav></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav Bar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a class=\"navbar-brand\" href=\"#\">Web Zone</a> "), _hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "nav-link text-dark link-r",
-    to: {
-      name: 'Test'
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "btn btn-info",
-        onClick: _cache[0] || (_cache[0] = function () {
-          return $options.redirectLaravel && $options.redirectLaravel.apply($options, arguments);
-        })
-      }, "Sign In")];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "nav-link text-dark link-r",
-    to: {
-      name: 'Test'
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_13];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])])])])])], 2112
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav Bar "), _hoisted_1], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }

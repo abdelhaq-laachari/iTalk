@@ -7,7 +7,12 @@
     </head>
     <body class="antialiased">
         <div id="app">
-            <app-components-test></app-components-test>
+        @extends('layouts.app')
+            <!-- <app-components-test></app-components-test> -->
+            @section('content')
+                <h1>hello</h1>
+            @endsection
+
         </div>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         </script>

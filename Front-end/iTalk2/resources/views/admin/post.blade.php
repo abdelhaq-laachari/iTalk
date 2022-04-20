@@ -2,5 +2,5 @@
 @section('title', 'post')
 
 @section('content')
-<h1>hello</h1>
+<h1>post</h1>
 @endsection

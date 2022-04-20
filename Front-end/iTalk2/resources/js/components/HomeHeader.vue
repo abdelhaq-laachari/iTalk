@@ -21,19 +21,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="mx-auto"></div>
           <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="">
-                  
-                    <router-link class="nav-link text-dark link-r" :to="{name:'Test'}">
-                        <button class="btn btn-info" @click="redirectLaravel">Sign In</button>
-                    </router-link>
+            <li class="nav-item nav-link">
+                <a href="/login"> 
+                  <button class="btn btn-info">Sign In</button>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="">
-                    <router-link class="nav-link text-dark link-r" :to="{name:'Test'}">
-                        <button class="btn btn-light">Sign Up</button>
-                    </router-link>
+            <li class="nav-item nav-link">
+                <a href="/register"> 
+                  <button class="btn btn-light">Sign Up</button>
                 </a>
             </li>
           </ul>
@@ -50,8 +45,11 @@ export default {
   components: {
   },
   methods: {
-    redirectLaravel: function() {
+    login: function() {
       this.$router.push('/login');
+    },
+    register: function() {
+      this.$router.push('/register');
     },
   },
 }

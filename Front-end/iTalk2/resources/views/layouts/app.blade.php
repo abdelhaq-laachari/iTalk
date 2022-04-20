@@ -18,14 +18,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <div>
-                        <img src="dist/img/iTalk.png" alt="iTalk Logo" class="brand-image " >
+                        <!-- <img src="dist/img/iTalk.png" alt="iTalk Logo" class="brand-image " > -->
+                        iTalk
                     </div>
                 </a>
                 
@@ -61,6 +63,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        profile
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('create') }}">
+                                        create post
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
