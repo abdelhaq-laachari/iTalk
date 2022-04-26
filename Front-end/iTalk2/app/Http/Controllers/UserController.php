@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +22,19 @@ class UserController extends Controller
     }
     public function user()
     {
-        return view('user/home');
+        // $post = DB::select('SELECT P.title, 
+        // P.topic,
+        // U.name, 
+        // U.last_name, 
+        // U.email 
+        // FROM `post` P,
+        // `users` U 
+        // WHERE P.user_id = $id
+        // AND P.user_id = U.id');
+        // return view('user/home', ['post' => $post]);
+        // return view('user/home');
+        // $post = DB::select('select * from post');
+        // return view('user/home', ['post' => $post]);
     }
     public function profile()
     {
@@ -29,6 +42,10 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view('user/create');
+        $category = DB::select('select * from category');
+        return view('user/create', ['category' => $category]);
+        // return view('user/create');
     }
+
+    
 }

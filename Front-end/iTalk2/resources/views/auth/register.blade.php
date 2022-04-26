@@ -64,6 +64,19 @@
                                 @enderror
                             </div>
                         </div>
+                        <!-- <div class="row mb-3">
+                            <label for="picture" class="col-md-4 col-form-label text-md-end">{{ __('Photo Profile') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ old('picture') }}" required autocomplete="file">
+
+                                @error('picture')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $picture }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div> -->
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

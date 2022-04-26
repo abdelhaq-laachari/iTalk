@@ -42,3 +42,5 @@ Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'index'])-
 Route::get('post', [App\Http\Controllers\AdminController::class, 'post'])->name('post');
 
 Route::get('user', [App\Http\Controllers\AdminController::class, 'user'])->name('user');
+
+// Route::get('view-records','PostController@index');
