@@ -10,12 +10,15 @@ use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');

@@ -12,7 +12,7 @@ class UserPostController extends Controller
 
         return view('users.posts.index', [
             'user' => $user,
-            'posts'=> $posts
+            'posts'=> $posts,
         ]);
     }
 }
