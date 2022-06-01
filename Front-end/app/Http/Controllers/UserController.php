@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +14,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::where("id", "<>", auth()->user()->id);
+       
+        $users = $users->get();
+        return view("users.index", [
+            "users" => $users
+        ]);
     }
 
     /**
@@ -25,7 +29,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("users.form", [
+            "isUpdate" => false,
+        ]);
     }
 
     /**
@@ -36,101 +42,63 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function getUser($id)
-    {
-        if (auth()->user()) {
-            $users = User::find($id);
-
-            return view('users.profile', [
-                'users' => $users
-            ]);
-        } else {
-            return redirect(route('login'));
-        }
-    }
-    public function updateUser(Request $request)
-    {
-
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'username' => 'required|max:255',
-            'email' => 'required|max:255',
+        $request->validate([
+            "name" => "required|min:3",
+            "email" => "required|email|unique:users",
+            "password" => "required|min:6",
         ]);
-
-
-        $user = User::find($request->id);
-
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->username = $request->username;
-
-
-        if ($request->password == null) {
-            $user->password = $request->old_password;
-        } else {
-            $user->password =  Hash::make($request->password);
-        }
-
+        $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect(route('home'));
+        return redirect()->route("users.index");
     }
-    public function deleteUser($id)
-    {
-        $user = User::find($id);
-        $user->delete();
 
-        return redirect(route('home'));
-    }
-    public function show(User $user)
-    {
-        dd($user);
-        $users = User::find($user);
 
-        return view('users.profile', [
-            'users' => $users
+    public function edit($id)
+    {
+        return view("users.form", [
+            "isUpdate" => true,
+            "user" => User::find($id)
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "name" => "required|min:3",
+            "email" => "required|email",
+            "password" => "nullable|min:6",
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+
+        return redirect()->route("users.index");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect()->route("users.index");
     }
 }

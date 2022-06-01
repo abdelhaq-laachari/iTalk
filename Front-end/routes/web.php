@@ -1,49 +1,61 @@
 <?php
 
-use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserPostController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostLikeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
+Route::middleware(["auth"])->group(function () {
+    Route::get('/Posts/create', "App\Http\Controllers\PostsController@create")->name("Posts@create");
+    Route::post('/Posts/store', "App\Http\Controllers\PostsController@store")->name("Posts@store");
+});
 
-Route::get('/', [HomeController::class, 'index'])
-    ->name('home');
+Route::get('/', "App\Http\Controllers\PostsController@index")->name("Posts@index");
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+Route::get('/Posts/{id}/edit', "App\Http\Controllers\PostsController@edit")->name("Posts@edit");
+Route::put('/Posts/{id}/update', "App\Http\Controllers\PostsController@update")->name("Posts@update");
+Route::delete('/Posts/destroy', "App\Http\Controllers\PostsController@destroy")->name("Posts@destroy");
+Route::get('/Posts/{id}', "App\Http\Controllers\PostsController@show")->name("Posts@show");
+Route::get('/Posts/{id}/vote', "App\Http\Controllers\PostsController@vote")->name("Posts@vote");
+Route::get('/Posts/{id}/unvote', "App\Http\Controllers\PostsController@unvote")->name("Posts@unvote");
 
-Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
+Route::post('/comment/store', "App\Http\Controllers\CommentsController@store")->name("comments@store");
+Route::get('/comment/{id}/destroy', "App\Http\Controllers\CommentsController@destroy")->name("comments@destroy");
 
-Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+// Route::get("/categories","CategoryController@index");
+// Route::resources("categories",);
+Route::group(["prefix" => "categories", 'namespace' => 'App\Http\Controllers',], function () {
+    Route::get("/", "CategoryController@index")->name("categories@index");
+    Route::post("/", "CategoryController@store")->name("categories@store");
+    Route::put("/{category}", "CategoryController@update")->name("categories@update");
+    Route::get("/{category}", "CategoryController@destroy")->name("categories@destroy");
+});
+Route::group(["prefix" => "profile", 'namespace' => 'App\Http\Controllers'], function () {
+    Route::get("/", "ProfileController@index")->name("profile.index");
+    Route::post("/updateImage", "ProfileController@updateImage")->name("profile.updateImage");
+    Route::post("/updateName", "ProfileController@updateName")->name("profile.updateName");
+    Route::post("/updatePassword", "ProfileController@updatePassword")->name("profile.updatePassword");
+});
+Route::group(["prefix" => "users", 'namespace' => 'App\Http\Controllers'], function () {
+    Route::get("/", "UserController@index")->name("users.index");
+    Route::get("/create", "UserController@create")->name("users.create");
+    Route::post("/store", "UserController@store")->name("users.store");
+    Route::get("/{id}/edit", "UserController@edit")->name("users.edit");
+    Route::get("/{id}/destroy", "UserController@destroy")->name("users.destroy");
+    Route::put("/{id}/update", "UserController@update")->name("users.update");
+    // Route::post("/updateImage","ProfileController@updateImage")->name("profile.updateImage");
+    // Route::post("/updateName","ProfileController@updateName")->name("profile.updateName");
+    // Route::post("/updatePassword","ProfileController@updatePassword")->name("profile.updatePassword");
+});
 
-Route::get('users/profile/{id}', [UserController::class, 'getUser'])->name('Profile');
-Route::post('users/profile/edit/{id}', [UserController::class, 'updateUser'])->name('Profile.edit');
-Route::get('users/profile/delete/{id}', [UserController::class, 'deleteUser'])->name('Profile.delete');
+Auth::routes();
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
-
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::get('/all-posts', [PostController::class, 'index']);
-Route::post('/posts', [PostController::class, 'store'])->name('posts.form');
-Route::post('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-
-Route::post('/posts/{post:id}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
-Route::post('/posts/{post:id}/notlikes', [PostLikeController::class, 'destroy'])->name('posts.notlikes');
-
-
-Route::get('/admin', [AdminLoginController::class, 'index'])->name('admin');
-Route::post('/admin', [AdminLoginController::class, 'store']);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
